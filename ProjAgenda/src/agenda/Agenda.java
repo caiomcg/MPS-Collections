@@ -15,12 +15,7 @@ public class Agenda {
     }
 
     public Pessoa buscaPessoa(String nome) {
-        for (Map.Entry<String, Pessoa> entry : contatos.entrySet()) {
-            if (entry.getKey().equals(nome)) {
-                return entry.getValue();
-            }
-        }
-        return null;
+        return this.contatos.get(nome);
     }
 
     public void inserePessoa(Pessoa pessoa) {
@@ -35,5 +30,11 @@ public class Agenda {
         }
 
         return nomes;
+    }
+
+    public List<Person> listarPessoas() {
+        return contatos.entrySet().stream()
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
     }
 }
