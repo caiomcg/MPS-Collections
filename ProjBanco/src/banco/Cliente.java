@@ -8,8 +8,7 @@ public class Cliente {
     private String cpf;
 
     public Cliente() {
-        nome = "Nome e Sobrenome";
-        cpf  = "111.111.111-77";
+        this("111.111.111-77", "Nome e Sobrenome");
     }
 
     public Cliente(String nome, String cpf) {
@@ -36,5 +35,22 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente: {\"nome\" : " + nome + ", \"cpf\" : " + cpf + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cliente cliente = (Cliente) o;
+
+        return cpf.equals(cliente.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = cpf.hashCode();
+        result = 31 * result + nome.hashCode();
+        return result;
     }
 }

@@ -8,8 +8,7 @@ public class Conta {
     private double saldo;
 
     public Conta() {
-        numero = "7777";
-        saldo = 77.0;
+        this("777", 77.0);
     }
 
     public Conta(String numero, double saldo) {
@@ -40,5 +39,20 @@ public class Conta {
     @Override
     public String toString() {
         return "Conta: {\"numero\" : " + numero + ", \"saldo\" : " + saldo + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Account account = (Account) o;
+
+        return numero.equals(account.numero);
+    }
+
+    @Override
+    public int hashCode() {
+        return numero.hashCode();
     }
 }

@@ -1,53 +1,42 @@
 package banco;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by caiomcg on 16/04/17.
  */
 public class Banco {
-    private Map<Cliente, ArrayList<Conta>> contas;
+    private Map<Conta, Cliente> contas;
 
     public Banco() {
         contas = new HashMap<>();
     }
 
     public void inserir(Conta conta, Cliente cliente) {
-        ArrayList<Conta> userAccounts = buscaContasDeUmCliente(cliente.getCpf());
-        if (buscaConta(conta.getNumero()) == null) {
-            userAccounts.add(conta);
-        }
-        contas.put(cliente, userAccounts);
+        this.contas.put(conta, cliente);
     }
 
     public Conta buscaConta(String numero) {
-        for (Map.Entry<Cliente, ArrayList<Conta>> entry : contas.entrySet()) {
-            for (Conta conta : entry.getValue()) {
-                if (conta.getNumero().equals(numero)) {
-                    return conta;
-                }
-            }
-        }
-        return null;
+        return contas.entrySet().stream()
+                .filter(accountClientEntry -> accountClientEntry.getKey().getNumber().equals(number))
+                .findFirst()
+                .get()
+                .getKey();
     }
 
     public Cliente buscaCliente(String cpf) {
-        for (Map.Entry<Cliente, ArrayList<Conta>> entry : contas.entrySet()) {
-            if (entry.getKey().getCpf().equals(cpf)) {
-                return entry.getKey();
-            }
-        }
-        return null;
+        return contas.entrySet().stream()
+                .filter(accountClientEntry -> accountClientEntry.getValue().getCpf().equals(cpf))
+                .findFirst()
+                .get()
+                .getValue();
     }
 
-    public ArrayList<Conta> buscaContasDeUmCliente(String cpf) {
-        Cliente findClient = this.buscaCliente(cpf);
-        if (findClient != null) {
-            return contas.get(findClient);
-        }
-        return new ArrayList<>();
+    public List<Conta> buscaContasDeUmCliente(String cpf) {
+        return contas.entrySet().stream()
+                .filter(accountClientEntry -> accountClientEntry.getValue().getCpf().equals(cpf))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
     }
 }
