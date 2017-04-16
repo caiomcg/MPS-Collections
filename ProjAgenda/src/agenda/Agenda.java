@@ -32,7 +32,7 @@ public class Agenda {
         return nomes;
     }
 
-    public List<Person> listarPessoas() {
+    public List<Pessoa> listarPessoas() {
         return contatos.entrySet().stream()
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
