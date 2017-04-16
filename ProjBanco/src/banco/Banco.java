@@ -19,7 +19,7 @@ public class Banco {
 
     public Conta buscaConta(String numero) {
         return contas.entrySet().stream()
-                .filter(accountClientEntry -> accountClientEntry.getKey().getNumber().equals(number))
+                .filter(accountClientEntry -> accountClientEntry.getKey().getNumero().equals(numero))
                 .findFirst()
                 .get()
                 .getKey();

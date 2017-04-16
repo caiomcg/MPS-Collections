@@ -3,6 +3,7 @@ import banco.Cliente;
 import banco.Conta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TestaBanco {
     public static void main(String[] args) {
@@ -21,17 +22,17 @@ public class TestaBanco {
 
         if (cliente != null) {
             System.out.println(cliente.toString());
-            ArrayList<Conta> contas = banco.buscaContasDeUmCliente(cliente.getCpf());
+            List<Conta> contas = banco.buscaContasDeUmCliente(cliente.getCpf());
             System.out.println(contas.toString());
         }
         if (cliente2 != null) {
             System.out.println(cliente2.toString());
-            ArrayList<Conta> contas = banco.buscaContasDeUmCliente(cliente2.getCpf());
+            List<Conta> contas = banco.buscaContasDeUmCliente(cliente2.getCpf());
             System.out.println(contas.toString());
         }
         if (cliente3 != null) {
             System.out.println(cliente3.toString());
-            ArrayList<Conta> contas = banco.buscaContasDeUmCliente(cliente3.getCpf());
+            List<Conta> contas = banco.buscaContasDeUmCliente(cliente3.getCpf());
             System.out.println(contas.toString());
         }
 

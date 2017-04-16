@@ -46,7 +46,7 @@ public class Conta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Account account = (Account) o;
+        Conta account = (Conta) o;
 
         return numero.equals(account.numero);
     }
